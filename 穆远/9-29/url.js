@@ -1,7 +1,9 @@
 var url = require("url");
+var quer = require("querystring");
 var u = "https://github.com/allcky/wuiw1610-1";
 // console.log(url.parse(u));
 // parse这个方法可以将一个url的字符串解析并返回一个url的对象
+var u2 = "https://www.baidu.com/s?wd=queryString%20url%20node&rsv_spt=1&rsv_iqid=0xd4b541c20000c390&issp=1&f=8&rsv_bp=1&rsv_idx=2&ie=utf-8&rqlang=cn&tn=baiduhome_pg&rsv_enter=0&oq=queryString%2520node";
 var Url1 =  {
     protocol: 'https:',
         slashes: true,
@@ -17,6 +19,13 @@ var Url1 =  {
         href: 'https://github.com/allcky/wuiw1610-1'
 }
 
+var mn = url.parse(u2);
+// console.log(mn);
+var qu = quer.parse(mn.query);
+    qu = null;
+console.log(qu);
+//query下面太多了，直接null吧;
+
 // console.log(url.format(Url1));//将对象转换成url
 var a = url.resolve(u,"four");
 // console.log(a);
@@ -25,7 +34,9 @@ var a = url.resolve(u,"four");
 var b = url.resolve(u,"/four");
 // console.log(b);
 
-var quer = require("querystring");
+
+
+
 // console.log(quer);
 
 // console.log(quer.parse(u));//讲一个字符串反序列化成一个对象;
@@ -33,9 +44,9 @@ var quer = require("querystring");
 //讲一个对象反序列化成一个字符串
 
 /////////////////一对
-console.log(quer.escape(u));
+// console.log(quer.escape(u));
 //可将字符串进行编码
-console.log(quer.unescape(quer.escape(u)));
+// console.log(quer.unescape(quer.escape(u)));
 //可将含有百分号的字符串进行转码；
 //////////////////
 
