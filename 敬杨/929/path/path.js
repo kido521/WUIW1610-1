@@ -22,7 +22,7 @@ var path = require('path');
 // path.isAbsolute()
 // var p = "../a.txt";
 // var p2 = __filename;
-// path.isAbsolute(p2);
+// console.log(path.isAbsolute(p));
 
 // path.relative()
 // var pa = __dirname;
@@ -46,3 +46,7 @@ var path = require('path');
 // p1.base="123"+p1.ext;
 // console.log(path.format(p1));
 // console.log(path.parse(p))
+
+
+// dirname
+// console.log(path.dirname(__dirname));
