@@ -1,3 +1,5 @@
-var path = require("path");
-console.log(path.resolve(__dirname,'../path/path.js'));
-console.log(path.resolve(__dirname,'./path.js'));
+var path = require('path')
+
+var p = './2.path.js';
+
+console.log(path.resolve(p))
