@@ -1,5 +1,5 @@
-var path = require("path");
-var p = "../path/path.js";
-var p2 = __filename;
-console.log(path.isAbsolute("p"));
-console.log(path.isAbsolute("p2"));
+var path = require('path')
+var p = './2.path.js';
+var p1 = __dirname;
+console.log(path.isAbsolute(p))
+console.log(path.isAbsolute(p1))
