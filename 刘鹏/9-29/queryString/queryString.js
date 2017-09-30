@@ -1,0 +1,10 @@
+var qs=require('querystring');
+var url=require('url');
+var u="https://user:pass@sub.host.com:8080/p/a/t/h?query=string&&add=456#hash";
+var query=url.parse(u);
+var qobj=qs.parse(query.query);
+qobj.query="ddd";
+var querystr=qs.stringify(qobj);
+query.search='?'+querystr;
+query.qs=querystr;
+console.log(url.format(query));
