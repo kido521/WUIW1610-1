@@ -1,0 +1,11 @@
+var qs=require('querystring');
+var url=require('url');
+var u="http://www.baidu.com/index/a.php?foo=bar&baz=qux&bqe=quux&corge=123";
+var uobj=url.parse(u);
+var query=uobj.query;
+var qobj=qs.parse(query);
+qobj.baz="hello";
+var querystr=qs.stringify(qobj);
+uobj.search='?'+querystr;
+uobj.query=querystr;
+console.log(url.format(uobj));
