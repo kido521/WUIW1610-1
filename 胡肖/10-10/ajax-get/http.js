@@ -25,7 +25,7 @@ var sever=http.createServer((req,res)=>{
             }
             return false;
         })
-        res.write(result.toString());
+        res.write(JSON.stringify(result));
         res.end();
     }
 
