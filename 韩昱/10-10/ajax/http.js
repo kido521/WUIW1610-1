@@ -3,17 +3,16 @@ var fs=require("fs");
 var url=require("url");
 var qs=require("querystring");
 var data=[
-    '张三','lisi','王五','赵六'
+    '刘诛仙','王斩魔','李杀神','赵日天','龙傲天'
 ]
-http.createServer(function(req,res){
+var server=http.createServer(function(req,res){
     var u=url.parse(req.url);
-    if(req.url=='/favicon.ico'){
+    if(u.pathname=='/favicon.ico'){
         res.end();
         return;
     }
-    console.log(u);
-    if(u.pathname=='/'||u.pathname=='/index1.html'){
-        fs.readFile('./index1.html',function (err,data) {
+    if(u.pathname=='/'||u.pathname=='/index.html'){
+        fs.readFile('./index.html',function (err,data) {
             res.write(data);
             res.end();
         })
@@ -28,8 +27,9 @@ http.createServer(function(req,res){
                 return true;
             }
             return false;
-
         });
-        res.end(result.toString());
+        res.write(JSON.stringify(result));
+        res.end();
     }
-}).listen(8000)
+});
+server.listen(8000);
