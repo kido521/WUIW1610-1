@@ -10,7 +10,7 @@ http.createServer(function(req,res){
 
     //u.pathnam  ==>  /index.html
 
-    if(u.pathnam==='/favicon.ico'){
+    if(u.pathnam=='/favicon.ico'){
         res.end();
         return;
     }

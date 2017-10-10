@@ -28,6 +28,7 @@
             xhr.onreadystatechange=function(){
                 if(xhr.readyState==4){
                     if (xhr.status==200){
+                        console.log(JSON.parse(xhr.response))
                         var date=JSON.parse(xhr.response);
                         var str='';
                         date.forEach(function(val,index){
