@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        <input type="search" placeholder="请输入搜索内容" class="search">
+        <button class="sousuo">搜索</button>
+        <ul class="list"></ul>
+    </div>
+    <script>
+
+        var search=document.querySelector('.search');
+        var button=document.querySelector('button');
+        var list=document.querySelector('.list');
+
+        button.onclick=function(){
+            var value=search.value;
+            if (value.length==0){
+                alert('请输入内容');
+                return;
+            }
+            var xhr=new XMLHttpRequest();
+            xhr.open('get','/search?s='+value);
+            xhr.send();
+            xhr.onreadystatechange=function(){
+                if(xhr.readyState==4){
+                    if (xhr.status==200){
+                        console.log(JSON.parse(xhr.response))
+                        var date=JSON.parse(xhr.response);
+                        var str='';
+                        date.forEach(function(val,index){
+                            str+=`<li>${val}</li>`;
+                            list.innerHTML=str;
+                        })
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

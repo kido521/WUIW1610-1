@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据接收</title>
+</head>
+<body>
+<div>
+    <input type="search" placeholder="请输入内容">
+    <input type="button" value="搜索">
+    <ul class="list">
+
+    </ul>
+</div>
+</body>
+<script>
+    var search=document.querySelector('input[type=search]');
+    var list=document.querySelector('.list');
+    console.log(list)
+    search.onblur=function(){
+        var v=search.value;
+        if(v.length==0){
+            alert("");
+            return;
+        }
+        var xhr=new XMLHttpRequest();
+        xhr.open("GET",'/search?s='+v)
+        xhr.send();
+        xhr.onreadystatechange=function(){
+            if(xhr.readyState==4){
+                if(xhr.status==200){
+                    var data=json.parse(xhr.response);
+                    var str="";
+                    data.forEach(function(v){
+                        str+=`<li>${v}</li>`;
+                    });
+                    list.innerHTML=str;
+                }
+            }
+        }
+    }
+</script>
+</html>
