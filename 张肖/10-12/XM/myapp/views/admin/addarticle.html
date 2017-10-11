@@ -1,0 +1,126 @@
+<%include header.html%>
+<div class="panel admin-panel">
+  <div class="panel-head" id="add"><strong><span class="icon-pencil-square-o"></span>增加内容</strong></div>
+  <div class="body-content">
+    <form method="post" class="form-x" action="">
+      <div class="form-group">
+        <div class="label">
+          <label>标题：</label>
+        </div>
+        <div class="field">
+          <input type="text" class="input w50" value="" name="title" data-validate="required:请输入标题" />
+          <div class="tips"></div>
+        </div>
+      </div>
+      <div class="form-group">
+        <div class="label">
+          <label>缩略图：</label>
+        </div>
+        <div class="field">
+          <input type="text" id="url1" name="thumb" class="input tips" style="width:25%; float:left;" value="" data-toggle="hover" data-place="right" data-image=""  />
+          <div class="button bg-blue margin-left" id="image1" style="position: relative;float: left" >
+            <input type="file" id="uploadlogo" style="position: absolute;width:100%;height:100%;opacity: 0;">+ 浏览上传
+          </div>
+          <div class="tipss">图片尺寸：500*500</div>
+        </div>
+      </div>
+      <script>
+          var uploadlogo=document.querySelector('#uploadlogo');
+          var url1=document.querySelector('#url1');
+          uploadlogo.onchange=function () {
+              var file=this.files[0];
+              var fd=new FormData();
+              fd.append('logo',file);
+              var xhr=new XMLHttpRequest();
+              xhr.open('POST','index.php?m=admin&c=index&a=uploadFile');
+              xhr.send(fd);
+              xhr.onreadystatechange=function () {
+                  if(xhr.readyState==4){
+                      if(xhr.status==200){
+                          url1.value=xhr.response;
+                          url1.setAttribute('data-image',xhr.response);
+                      }
+                  }
+              }
+          }
+      </script>
+      <if condition="$iscid eq 1">
+        <div class="form-group">
+          <div class="label">
+            <label>分类标题：</label>
+          </div>
+          <div class="field">
+            <select name="cid" class="input w50">
+              <option value="">一级分类</option>
+              <option value=""></option>
+            </select>
+            <div class="tips"></div>
+          </div>
+        </div>
+        <div class="clear"></div>
+        <div class="form-group">
+          <div class="label">
+            <label>作者：</label>
+          </div>
+          <div class="field">
+            <input type="text" class="input" name="author" value="<?php echo $user?>" />
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="label">
+            <label>发布时间：</label>
+          </div>
+          <div class="field">
+            <input type="text" id="test1" class="laydate-icon input w50" name="time" onclick="laydate({istime: true, format: 'YYYY-MM-DD hh:mm:ss'})" value=""  data-validate="required:日期不能为空" style="padding:10px!important; height:auto!important;border:1px solid #ddd!important;" />
+            <script src="<?php echo PLUGIN_PATH?>layDate/laydate/laydate.js"></script>
+            <script>
+                //执行一个laydate实例
+                laydate.render({
+                    elem: '#test1' //指定元素
+                });
+            </script>
+            <div class="tips"></div>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="label">
+            <label>描述：</label>
+          </div>
+          <div class="field">
+            <textarea class="input" name="description" style=" height:90px;"></textarea>
+            <div class="tips"></div>
+          </div>
+        </div>
+      <div class="form-group">
+        <div class="label">
+          <label>内容：</label>
+        </div>
+        <div class="field">
+          <!--<textarea name="content" class="input" style="height:450px; border:1px solid #ddd;"></textarea>-->
+          <!-- 加载编辑器的容器 -->
+          <script id="container" name="content" type="text/plain">
+    </script>
+          <!-- 配置文件 -->
+          <script type="text/javascript" src=""></script>
+          <!-- 编辑器源码文件 -->
+          <script type="text/javascript" src=""></script>
+          <!-- 实例化编辑器 -->
+          <script type="text/javascript">
+              var ue = UE.getEditor('container');
+          </script>
+          <div class="tips"></div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <div class="label">
+          <label></label>
+        </div>
+        <div class="field">
+          <button class="button bg-main icon-check-square-o" type="submit"> 提交</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
